@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Tests</title>
+<body style="font:16px monospace;background:#111;color:#eee;padding:16px">
+<pre id="out">running…</pre>
+<script type="module">
+  import { results as ticketResults } from './tickets.test.js';
+  import { results as pricingResults } from './pricing.test.js';
+  const results = [...ticketResults.map((r) => ({ ...r, name: 'tickets: ' + r.name })),
+                   ...pricingResults.map((r) => ({ ...r, name: 'pricing: ' + r.name }))];
+  const lines = results.map((r) => `${r.ok ? 'PASS' : 'FAIL'}  ${r.name}${r.ok ? '' : ' — ' + r.error}`);
+  const failed = results.filter((r) => !r.ok).length;
+  document.getElementById('out').textContent = lines.join('\n') + `\n\n${results.length - failed}/${results.length} passed`;
+  document.title = failed ? 'FAILED' : 'ALL PASSED';
+</script>

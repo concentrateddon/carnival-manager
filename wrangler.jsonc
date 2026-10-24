@@ -1,0 +1,8 @@
+{
+  // Static-assets-only Worker: Cloudflare serves everything in ./public.
+  "name": "carnival-manager",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./public"
+  }
+}
